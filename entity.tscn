@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://fujhkgmd7xgm"]
+
+[ext_resource type="PackedScene" uid="uid://cfoemikhu8qxd" path="res://scene/main/entity_living.tscn" id="1_csorw"]
+
+[node name="entity" instance=ExtResource("1_csorw")]
+health = null
+damage_physic = null
+damage_magic = null
+damage_pure = null
+resistance_physic = null
+resistance_magic = null
+resistance_pure = null
+speed = null
+relation = null
+view_distance = null
+hear_distance = null
+title = null
+icon = null

@@ -1,22 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0jyqi2ancjw6"]
+[gd_scene load_steps=7 format=3 uid="uid://c0jyqi2ancjw6"]
 
 [ext_resource type="Script" path="res://scene/main/player.gd" id="1_438oa"]
-[ext_resource type="Texture2D" uid="uid://dvh4382mpmj8u" path="res://img/entity_sprite/player.png" id="1_d7hos"]
+[ext_resource type="PackedScene" uid="uid://cfoemikhu8qxd" path="res://scene/main/entity_living.tscn" id="1_jbog0"]
+[ext_resource type="Script" path="res://class/inventory.gd" id="3_xjjyc"]
+[ext_resource type="Script" path="res://class/SPECIAL.gd" id="4_phiyb"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kjclf"]
-radius = 8.24621
+[sub_resource type="Resource" id="Resource_gegfl"]
+script = ExtResource("3_xjjyc")
 
-[node name="player" type="CharacterBody2D"]
+[sub_resource type="Resource" id="Resource_u6bkt"]
+script = ExtResource("4_phiyb")
+strength = 0
+perception = 0
+endurance = 0
+charisma = 0
+intelligence = 0
+agility = 0
+luck = 0
+
+[node name="player" instance=ExtResource("1_jbog0")]
 script = ExtResource("1_438oa")
+inventory = SubResource("Resource_gegfl")
 speed = 99
+special = SubResource("Resource_u6bkt")
 
-[node name="camera" type="Camera2D" parent="."]
+[node name="camera" type="Camera2D" parent="." index="2"]
 zoom = Vector2(3, 3)
-position_smoothing_enabled = true
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_d7hos")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 12)
-shape = SubResource("CircleShape2D_kjclf")

@@ -1,10 +1,5 @@
 extends EntityLiving
 
-@export var living := EntityLiving
-
-func _ready():
-	pass
-
 func _process(delta):
 	var direction = Vector2.ZERO
 

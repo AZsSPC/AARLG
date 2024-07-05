@@ -13,11 +13,14 @@ class_name EntityLiving
 @export var resistance_pure: int
 
 @export var speed: int
-@export var special := SPECIAL
+@export var special: SPECIAL
 
 @export var relation: int
 @export var view_distance: int
 @export var hear_distance: int
+
+func _init():
+	print(self.name)
 
 func on_interact():
 	pass
