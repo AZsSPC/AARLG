@@ -18,7 +18,7 @@ intelligence = 0
 agility = 0
 luck = 0
 
-[node name="player" instance=ExtResource("1_jbog0")]
+[node name="entity" instance=ExtResource("1_jbog0")]
 script = ExtResource("1_438oa")
 inventory = SubResource("Resource_gegfl")
 speed = 99
