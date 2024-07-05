@@ -1,23 +1,23 @@
 extends Entity
 class_name EntityLiving
 
-@export var health: float
+@export var health: int
 @export var inventory: Inventory
 
-@export var damage_physic: float
-@export var damage_magic: float
-@export var damage_pure: float
+@export var damage_physic: int
+@export var damage_magic: int
+@export var damage_pure: int
 
-@export var resistance_physic: float
-@export var resistance_magic: float
-@export var resistance_pure: float
+@export var resistance_physic: int
+@export var resistance_magic: int
+@export var resistance_pure: int
 
-@export var speed: float
-@export var SPECIAL: Array
+@export var speed: int
+@export var special := SPECIAL
 
 @export var relation: int
-@export var view_distance: float
-@export var hear_distance: float
+@export var view_distance: int
+@export var hear_distance: int
 
 func on_interact():
 	pass

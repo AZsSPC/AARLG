@@ -1,7 +1,6 @@
-extends Resource
+extends CharacterBody2D
 class_name Entity
 
-@export var pos: Vector2
 @export var title: String
 @export var icon: String
 
