@@ -18,8 +18,11 @@ class_name EntityLiving
 @export var agility := 0
 @export var luck := 0
 
-@export_group('Perception')
+@export_group('View')
 @export var view_distance := 15
+@export var view_angle := 70
+@export var view_direction := Vector2(0, 1)
+@export_group('Hearing')
 @export var hear_distance := 30
 
 @export_group('Damage')
@@ -32,12 +35,8 @@ class_name EntityLiving
 @export var resistance_magic := 0
 @export var resistance_pure := 0
 
-func on_create():
-	pass
-	
 func _ready():
 	print(id)
-	on_create()
 
 func on_interact():
 	pass
