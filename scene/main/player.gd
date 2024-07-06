@@ -1,5 +1,8 @@
 extends EntityLiving
 
+func on_create():
+	pass
+	
 func _process(delta):
 	var direction = Vector2.ZERO
 

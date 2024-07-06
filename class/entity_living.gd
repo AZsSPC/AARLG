@@ -1,26 +1,43 @@
 extends Entity
 class_name EntityLiving
 
-@export var health: int
+@export var id := 'entity_living'
+
 @export var inventory: Inventory
+@export var relation := 0
 
-@export var damage_physic: int
-@export var damage_magic: int
-@export var damage_pure: int
+@export_group('Stats')
+@export var health := 100
+@export var speed := 100
+@export_subgroup('Special')
+@export var strength := 0
+@export var perception := 0
+@export var endurance := 0
+@export var charisma := 0
+@export var intelligence := 0
+@export var agility := 0
+@export var luck := 0
 
-@export var resistance_physic: int
-@export var resistance_magic: int
-@export var resistance_pure: int
+@export_group('Perception')
+@export var view_distance := 15
+@export var hear_distance := 30
 
-@export var speed: int
-@export var special: SPECIAL
+@export_group('Damage')
+@export var damage_physic := 0
+@export var damage_magic := 0
+@export var damage_pure := 0
 
-@export var relation: int
-@export var view_distance: int
-@export var hear_distance: int
+@export_group('Resistance')
+@export var resistance_physic := 0
+@export var resistance_magic := 0
+@export var resistance_pure := 0
 
-func _init():
-	print(self.name)
+func on_create():
+	pass
+	
+func _ready():
+	print(id)
+	on_create()
 
 func on_interact():
 	pass
