@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://c0jyqi2ancjw6"]
 
 [ext_resource type="Script" path="res://scene/main/player.gd" id="1_438oa"]
-[ext_resource type="PackedScene" uid="uid://cfoemikhu8qxd" path="res://scene/main/entity_living.tscn" id="1_jbog0"]
+[ext_resource type="PackedScene" uid="uid://cfoemikhu8qxd" path="res://class/entity_living.tscn" id="1_jbog0"]
 [ext_resource type="Script" path="res://class/inventory.gd" id="3_xjjyc"]
 [ext_resource type="Script" path="res://class/SPECIAL.gd" id="4_phiyb"]
 
