@@ -1,38 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0jyqi2ancjw6"]
+[gd_scene load_steps=3 format=3 uid="uid://c0jyqi2ancjw6"]
 
 [ext_resource type="Script" path="res://scene/main/player.gd" id="1_438oa"]
 [ext_resource type="PackedScene" uid="uid://cfoemikhu8qxd" path="res://class/entity_living.tscn" id="1_jbog0"]
-[ext_resource type="Script" path="res://class/inventory.gd" id="3_xjjyc"]
-
-[sub_resource type="Resource" id="Resource_gegfl"]
-script = ExtResource("3_xjjyc")
 
 [node name="player" instance=ExtResource("1_jbog0")]
 script = ExtResource("1_438oa")
-id = "player"
-inventory = SubResource("Resource_gegfl")
-relation = null
-health = null
-speed = 99
-strength = null
-perception = null
-endurance = null
-charisma = null
-intelligence = null
-agility = null
-luck = null
-view_distance = null
-view_angle = null
-view_direction = null
-hear_distance = null
-damage_physic = null
-damage_magic = null
-damage_pure = null
-resistance_physic = null
-resistance_magic = null
-resistance_pure = null
-title = null
-icon = null
+speed = 400
 
 [node name="camera" type="Camera2D" parent="." index="2"]
-zoom = Vector2(0.2, 0.2)
+zoom = Vector2(3, 3)

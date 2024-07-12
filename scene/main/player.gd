@@ -1,4 +1,9 @@
 extends EntityLiving
+class_name EntityPlayer
+
+func _ready():
+	super._ready()
+	Global.player = self
 
 func _process(delta):
 	var direction = Vector2.ZERO
@@ -17,3 +22,9 @@ func _process(delta):
 
 	velocity = direction * speed
 	move_and_slide()
+
+func set_limit(x, y):
+	$camera.limit_top = -64
+	$camera.limit_left = 32
+	$camera.limit_right = x - 32
+	$camera.limit_bottom = y - 96

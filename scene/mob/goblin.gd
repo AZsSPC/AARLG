@@ -4,6 +4,7 @@ extends EntityLiving
 var move_timer: Timer
 
 func _ready():
+	super._ready()
 	# Create and start the timer for changing direction
 	move_timer = Timer.new()
 	move_timer.wait_time = .5  # Change direction every 2 seconds
