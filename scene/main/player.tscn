@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0jyqi2ancjw6"]
+[gd_scene load_steps=5 format=3 uid="uid://c0jyqi2ancjw6"]
 
 [ext_resource type="Script" path="res://scene/main/player.gd" id="1_438oa"]
 [ext_resource type="PackedScene" uid="uid://cfoemikhu8qxd" path="res://class/entity_living.tscn" id="1_jbog0"]
+[ext_resource type="Script" path="res://class/inventory.gd" id="3_qqgwt"]
+
+[sub_resource type="Resource" id="Resource_us67d"]
+script = ExtResource("3_qqgwt")
+items = null
 
 [node name="player" instance=ExtResource("1_jbog0")]
 script = ExtResource("1_438oa")
+inventory = SubResource("Resource_us67d")
 speed = 400
 
 [node name="camera" type="Camera2D" parent="." index="2"]

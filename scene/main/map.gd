@@ -2,8 +2,8 @@ extends TileMap
 
 var random = RandomNumberGenerator.new()
 
-@export var width = 100
-@export var height = 100
+@export var width = 200
+@export var height = 200
 @export var seed = 1
 @export var min_rooms = 5
 @export var max_rooms = 10
@@ -84,13 +84,13 @@ func update_map():
 		groups.append([])
 	
 	for y in range(height):
-		var p = ''
+		#var p = ''
 		for x in range(width):
-			p += '#' if map[y][x] == CELL.WALL else ' ' if map[y][x] == CELL.FLOOR else '?'
+			#p += '#' if map[y][x] == CELL.WALL else ' ' if map[y][x] == CELL.FLOOR else '?'
 			groups[map[y][x]].append(Vector2i(x, y))
 			if map[y][x] == CELL.PREVIOUS_LEVEL:
 				Global.player.position = Vector2(x, y) * 32
-		print(p)
+		#print(p)
 	
 	clear()
 	for f in CELL.keys():
@@ -137,20 +137,11 @@ func get_random_point_in_room(room):
 	return Vector2i(x, y)
 
 func trim_map():
-	var top_trim:int = 5
+	var top_trim:int = 3
 	var bottom_trim:int = 3
 	var left_trim:int = 3
 	var right_trim:int = 3
 
-	while true:
-		var is_wall_row = true
-		for cell in map[top_trim - 1]:
-			if cell != CELL.WALL:
-				is_wall_row = false
-				break
-		if is_wall_row:
-			break
-		#map.insert(0, map[0])
 	# Trim top
 	while true:
 		var is_wall_row = true
