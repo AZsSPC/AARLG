@@ -7,11 +7,14 @@
 radius = 8.0
 
 [node name="entity_living" type="CharacterBody2D"]
+y_sort_enabled = true
+position = Vector2(0, -12)
+motion_mode = 1
 script = ExtResource("1_yn1l4")
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_ub75b")
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 12)
+position = Vector2(0, 10)
 shape = SubResource("CircleShape2D_kjclf")

@@ -8,7 +8,7 @@ class_name EntityLiving
 
 @export_group('Stats')
 @export var health := 100
-@export var speed := 100
+@export var speed := 150
 @export_subgroup('Special')
 @export var strength := 0
 @export var perception := 0

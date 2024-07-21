@@ -5,7 +5,7 @@ func _ready():
 	super._ready()
 	Global.player = self
 
-func _process(delta):
+func get_input():
 	var direction = Vector2.ZERO
 
 	if Input.is_action_pressed("ui_right") or Input.is_action_pressed("move_right"):
@@ -20,7 +20,10 @@ func _process(delta):
 	if direction != Vector2.ZERO:
 		direction = direction.normalized()
 
-	velocity = direction * speed
+	return direction
+
+func _physics_process(delta):
+	velocity = get_input() * speed
 	move_and_slide()
 
 func set_limit(x, y):

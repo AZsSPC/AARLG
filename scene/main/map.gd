@@ -33,6 +33,7 @@ class Room:
 		return x < other.x + other.width and x + width > other.x and y < other.y + other.height and y + height > other.y
 
 func _ready():
+	Global.player.set_limit(width * 32, height * 32)
 	generate(seed, width, height)
 	update_map()
 
