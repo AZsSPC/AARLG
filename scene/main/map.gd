@@ -2,19 +2,20 @@ extends TileMap
 
 var random = RandomNumberGenerator.new()
 
-@export var width = 200
-@export var height = 200
+var chunk_size = 16
+@export var width = chunk_size * 6
+@export var height = chunk_size * 6
 @export var seed = 1
 @export var min_rooms = 5
 @export var max_rooms = 10
 @export var map = []
+var loaded_chunks = []
 
 const CELL = {
 	"WALL": 0,
 	"FLOOR": 1,
 	"NEXT_LEVEL": 3,
-	"PREVIOUS_LEVEL": 2,
-	"FILLER": 0,
+	"PREVIOUS_LEVEL": 2
 }
 
 class Room:
@@ -30,29 +31,37 @@ class Room:
 		self.height = height
 
 	func intersects(other):
-		return x < other.x + other.width and x + width > other.x and y < other.y + other.height and y + height > other.y
+		return \
+		x < other.x + other.width and \
+		x + width > other.x and \
+		y < other.y + other.height and \
+		y + height > other.y
 
 func _ready():
 	Global.player.set_limit(width * 32, height * 32)
-	generate(seed, width, height)
+	Global.player.position = generate(seed) * 32
 	update_map()
+	
+func _process(delta):
+	pass
+	#update_chunks()
 
-func generate(seed = 1, max_width = 100, max_height = 100, min_rooms = 5, max_rooms = 10):
+func generate(seed = 1):
 	random.seed = seed
 
 	# Create map filled with walls
 	map = []
-	for y in range(max_height):
+	for y in range(height):
 		var row = []
-		for x in range(max_width):
+		for x in range(width):
 			row.append(CELL.WALL)
 		map.append(row)
 
 	# Create rooms
 	var rooms = []
-	var room_count = random.randi_range(min_rooms, max_rooms)
+	var room_count = random.randi_range(5, 10)
 	for i in range(room_count):
-		var room = generate_room(max_height, max_width)
+		var room = generate_room(height, width)
 		if not is_room_valid(room, rooms, map):
 			continue
 		rooms.append(room)
@@ -75,9 +84,37 @@ func generate(seed = 1, max_width = 100, max_height = 100, min_rooms = 5, max_ro
 
 	var exit = get_random_point_in_room(exit_room)
 	map[exit.y][exit.x] = CELL.PREVIOUS_LEVEL
+	
+	loaded_chunks = []
+	for y in range(height / chunk_size):
+		loaded_chunks.append([])
+		for x in range(width / chunk_size):
+			loaded_chunks[y].append(false)
 
-	# Trim excess walls
-	trim_map()
+	print('chunks w=%s h=%s' % [loaded_chunks[0].size(), loaded_chunks.size()])
+	return entrance
+
+func update_chunks():
+	var vch = Global.player.get_visible_chunks(chunk_size, Vector2i(width / 16 + 1, height / 16 + 1))
+	var do_draw = false
+	var groups = []
+	for f in CELL.keys():
+		groups.append([])
+
+	for y in range(vch[0].y, vch[1].y + 1):
+		for x in range(vch[0].x, vch[1].x + 1):
+			if loaded_chunks[y][x]: continue
+			print('loaded x:%s y:%s' % [x, y])
+
+			for yi in range(y * chunk_size, y * chunk_size + chunk_size):
+				for xi in range(x * chunk_size, x * chunk_size + chunk_size):
+					groups[map[yi][xi]].append(Vector2i(xi, yi))
+
+			do_draw = true
+			loaded_chunks[y][x] = true
+
+	if do_draw: for f in CELL.keys():
+		set_cells_terrain_connect(0, groups[CELL[f]], 0, CELL[f])
 
 func update_map():
 	var groups = []
